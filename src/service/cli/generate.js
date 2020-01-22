@@ -77,7 +77,7 @@ module.exports = {
   run(args) {
     const [count] = args;
     if (count > 1000) {
-      console.log('Не больше 1000 объявлений');
+      console.log(`Не больше 1000 объявлений`);
       process.exit(ExitCode.error);
     }
 
@@ -89,7 +89,6 @@ module.exports = {
         console.error(`Ошибка записи данных в файл...`);
         return process.exit(ExitCode.error);
       }
-    
       console.log(`Файл mocks.json c тестовыми данными успешно создан.`);
       return process.exit(ExitCode.success);
     });
