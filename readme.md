@@ -1,7 +1,7 @@
 # Личный проект «Куплю. Продам» [![Build status][travis-image]][travis-url]
 
 * Студент: [Кирилл Мадорин](https://up.htmlacademy.ru/nodejs/3/user/32073).
-* Наставник: `Неизвестно`.
+* Наставник: [Александр Кожуркин](https://htmlacademy.ru/profile/id1318941).
 
 ---
 
