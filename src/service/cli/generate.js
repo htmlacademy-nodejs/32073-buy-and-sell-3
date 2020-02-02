@@ -84,7 +84,6 @@ module.exports = {
 
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
     const content = JSON.stringify(generateOffers(countOffer));
-    
     try {
       await fs.writeFile(FILE_NAME, content);
       console.log(chalk.green(`Файл mocks.json c тестовыми данными успешно создан.`));
