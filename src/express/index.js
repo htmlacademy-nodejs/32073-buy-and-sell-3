@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const express = require(`express`);
 const path = require(`path`);
@@ -17,10 +17,15 @@ app.use(`/`, mainRoutes);
 
 app.use(express.static(path.resolve(__dirname, PUBLIC_DIR)));
 
-app.use((req, res) => res.status(400).send(`errors/404`));
+app.use((req, res) => res.status(400).render(`errors/404`));
 app.use((err, req, res, next) => {
-  res.status(500).send(`errors/500`);
+  res.status(500).render(`errors/500`);
   next();
 });
+
+
+app.set(`views`, path.resolve(__dirname, `templates`));
+app.set(`view engine`, `pug`);
+
 
 app.listen(DEFAULT_PORT);
