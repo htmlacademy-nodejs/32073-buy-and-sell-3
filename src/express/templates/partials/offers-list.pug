@@ -1,0 +1,61 @@
+mixin offers-list(arrayOfOffers = [], type)
+  case type
+    when `search`
+      ul.search-results__list
+        each item in arrayOfOffers
+          li.search-results__item
+            div(class=`ticket-card ticket-card--color${item.picture.background}`)
+              .ticket-card__img
+                img(src=`/img/${item.picture.image}` srcset=`/img/${item.picture.image2x} 2x` alt="Изображение товара")
+              .ticket-card__info
+                span.ticket-card__label= `${item.type === 'buy' ? 'Куплю' : 'Продам'}`
+                .ticket-card__categories
+                  each category in item.category
+                    a(href="#")= category
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href="#")= item.title
+                  p.ticket-card__price
+                    span.js-sum= item.sum
+                    |  ₽
+                .ticket-card__desc
+                  p= `${item.description.length > 55 ? item.description.slice(0, 52) + '...' : item.description}`
+    when `my-offers`
+      ul
+        each item in arrayOfOffers
+          li.tickets-list__item.js-card
+            div(class=`ticket-card ticket-card--color${item.picture.background}`)
+              .ticket-card__img
+                img(src=`/img/${item.picture.image}` srcset=`/img/${item.picture.image2x} 2x` alt="Изображение товара")
+              .ticket-card__info
+                span.ticket-card__label= `${item.type === 'buy' ? 'Продам' : 'Куплю'}`
+                .ticket-card__categories
+                  each category in item.category
+                    a(href="#")= category
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href="#")= item.title
+                  p.ticket-card__price
+                    span.js-sum= item.sum
+                      |  ₽
+              button.ticket-card__del.js-delete(type="button") Удалить
+    default
+      ul
+        each item in arrayOfOffers
+          li.tickets-list__item
+            div(class=`ticket-card ticket-card--color${item.picture.background}`)
+              .ticket-card__img
+                img(src=`/img/${item.picture.image}` srcset=`/img/${item.picture.image2x} 2x` alt="Изображение товара")
+              .ticket-card__info
+                span.ticket-card__label= `${item.type === 'buy' ? 'Куплю' : 'Продам'}`
+                .ticket-card__categories
+                  each category in item.category
+                    a(href="#")= category
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href="#")= item.title
+                  p.ticket-card__price
+                    span.js-sum= item.sum
+                    |  ₽
+                .ticket-card__desc
+                  p= `${item.description.length > 55 ? item.description.slice(0, 52) + '...' : item.description}`

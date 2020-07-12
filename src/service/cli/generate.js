@@ -12,6 +12,9 @@ const {
 const {
   getRandomInt,
   shuffle,
+  readContent,
+  printNumWithLead0,
+  makePriceWithSpaces
 } = require(`../../utils`);
 
 const FILE_SENTENCES_PATH = `./data/sentences.txt`;
@@ -37,17 +40,14 @@ const PictureRestrict = {
   max: 16,
 };
 
-const readContent = async (filePath) => {
-  try {
-    const content = await fs.readFile(filePath, `utf8`);
-    return content.split(`\n`);
-  } catch (err) {
-    console.error(chalk.red(err));
-    return [];
-  }
+const getPictureFileName = (number) => {
+  const numWithLead0 = `${printNumWithLead0(number)}`;
+  return {
+    background: numWithLead0,
+    image: `item${numWithLead0}.jpg`,
+    image2x: `item${numWithLead0}@2x.jpg`
+  };
 };
-
-const getPictureFileName = (number) => number > 10 ? `item${number}.jpg` : `item0${number}.jpg`;
 
 const generateComments = (count, comments) => (
   Array(count).fill({}).map(() => ({
@@ -72,7 +72,7 @@ const generateOffers = (count, titles, categories, sentences, comments) => (
 );
 
 module.exports = {
-  name: `generate`,
+  name: `--generate`,
   async run(args) {
     const sentences = await readContent(FILE_SENTENCES_PATH);
     const titles = await readContent(FILE_TITLES_PATH);

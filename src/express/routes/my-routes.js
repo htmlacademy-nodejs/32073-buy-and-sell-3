@@ -1,9 +1,30 @@
 'use strict';
 
 const {Router} = require(`express`);
-const myRouter = new Router();
 
-myRouter.get(`/`, (req, res) => res.render(`my-tickets`));
-myRouter.get(`/comments`, (req, res) => res.render(`comments`));
+const getMyRouter = (service) => {
 
-module.exports = myRouter;
+  const myRouter = new Router();
+
+  myRouter.get(`/`, async (req, res, next) => {
+    try {
+      const offers = await service.getAllOffers();
+      return res.render(`my-tickets`, {arrayOfOffers: offers});
+    } catch (err) {
+      return next(err);
+    }
+  });
+
+  myRouter.get(`/comments`, async (req, res, next) => {
+    try {
+      const offers = await service.getAllOffers();
+      return res.render(`comments`, {offers: offers.slice(0, 3)});
+    } catch (err) {
+      return next(err);
+    }
+  });
+
+  return myRouter;
+};
+
+module.exports = {getMyRouter};
