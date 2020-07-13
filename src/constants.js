@@ -14,8 +14,15 @@ module.exports = {
     FORBIDDEN: 403,
     UNAUTHORIZED: 401,
     BAD_REQUEST: 400,
+    CREATED: 201,
+  },
+
+  DefaultPort: {
+    FRONT_SERVER: 8080,
+    SERVICE_SERVER: 3000
   },
 
   MAX_ID_LENGTH: 6,
   API_PREFIX: `/api`,
+  PUBLIC_DIR: `public`,
 };
